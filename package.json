@@ -1,0 +1,28 @@
+{
+  "name": "grunt-git-desc",
+  "version": "0.0.1",
+  "description": "git",
+  "main": "Gruntfile.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Trskldn/grunt-git-desc.git"
+  },
+  "keywords": [
+    "gruntplugin",
+    "npm",
+    "git"
+  ],
+  "author": "Taras Kolodnuy",
+  "license": "MIT",
+  // "dependencies": {
+  //   "shelljs": "~0.1.2"
+  // },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  }
+}
