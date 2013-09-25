@@ -13,11 +13,14 @@ module.exports = function (grunt) {
 		},
 
 		"git-desc": {
+			me:{
+
+			}
 		}
 
 	});
 
 	grunt.loadTasks("tasks");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
-	grunt.registerTask("default", [ "jshint", "git-desc" ]);
+	grunt.registerTask("default", [  "git-desc" ]);
 };
