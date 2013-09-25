@@ -14,9 +14,11 @@
   ],
   "author": "Taras Kolodnuy",
   "license": "MIT",
-  // "dependencies": {
-  //   "shelljs": "~0.1.2"
-  // },
+  "dependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9"
+  },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
     "grunt": "~0.4.1",
