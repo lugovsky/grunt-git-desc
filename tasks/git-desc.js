@@ -10,10 +10,10 @@ module.exports = function (grunt) {
 	grunt.registerMultiTask('git-desc', 'git describe', function(type){
 
 		var options = this.options({
-				template: "{%=branch%}-{%=commitSHA%}-{%=object%}{%=dirty%}",
+				template: "{%=branch%}.{%=commitSHA%}.{%=tag%}",
 				prop: "config.gitdesc"
 			}),
-			data = {},
+			data = {tag: '', branch: '', commitSHA: ''},
 			res;
 
 		grunt.verbose.writeflags(options, 'Options');
@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 			data.commitSHA = res.output.toString().trim();
 		}
 
-		if ( (res = shell.exec("git describe", {silent:true})).code == 0){
+		if ( (res = shell.exec("git describe --abbrev=0 --tags", {silent:true})).code == 0){
 			data.tag = res.output.toString().trim();
 		}
 
@@ -40,7 +40,6 @@ module.exports = function (grunt) {
 
 		grunt.config(options.prop+".data", data);
 		grunt.log.ok(compiledTmpl);
-		console.log(grunt.config(options.prop));
 	});
 
 }
