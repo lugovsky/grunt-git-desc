@@ -15,7 +15,6 @@
   "author": "Taras Kolodnuy",
   "license": "MIT",
   "dependencies": {
-    "q": "~0.9.6",
     "shelljs": "~0.2.6"
   },
   "devDependencies": {
