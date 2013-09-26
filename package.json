@@ -1,6 +1,6 @@
 {
   "name": "grunt-git-desc",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "git",
   "main": "Gruntfile.js",
   "repository": {
