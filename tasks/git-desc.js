@@ -14,7 +14,8 @@ module.exports = function (grunt) {
 				prop: "config.gitdesc",
 				branch: "git branch | grep '*' | sed 's/* //'",
 				tag: "git describe --abbrev=0 --tags",
-				shortSHA: "git log --pretty=format:'%h' -n 1"
+				shortSHA: "git log --pretty=format:'%h' -n 1",
+				SHA: "git rev-parse HEAD"
 			}),
 			data = {},
 			res;
