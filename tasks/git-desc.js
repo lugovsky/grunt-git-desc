@@ -10,25 +10,22 @@ module.exports = function (grunt) {
 	grunt.registerMultiTask('git-desc', 'git describe', function(type){
 
 		var options = this.options({
-				template: "{%=branch%}.{%=commitSHA%}.{%=tag%}",
+				template: "{%=branch%}.{%=shortSHA%}.{%=tag%}",
 				prop: "config.gitdesc"
 			}),
-			data = {tag: '', branch: '', commitSHA: ''},
+			data = {},
 			res;
+
+		function run(cmd) {
+			var res = shell.exec(cmd, {silent:true});
+			return res.code === 0 ? res.output.toString().trim() : '' ;
+		}
 
 		grunt.verbose.writeflags(options, 'Options');
 
-		if ( (res = shell.exec("git branch | grep '*' | sed 's/* //'", {silent:true})).code == 0){
-			data.branch = res.output.toString().trim();
-		}
-
-		if ( (res = shell.exec("git log --pretty=format:'%h' -n 1", {silent:true})).code == 0){
-			data.commitSHA = res.output.toString().trim();
-		}
-
-		if ( (res = shell.exec("git describe --abbrev=0 --tags", {silent:true})).code == 0){
-			data.tag = res.output.toString().trim();
-		}
+		data.branch = run("git branch | grep '*' | sed 's/* //'")
+		data.shortSHA = run("git log --pretty=format:'%h' -n 1")
+		data.tag = run("git describe --abbrev=0 --tags")
 
 		if (options.template){
 			var compiledTmpl = grunt.template.process(options.template, {
