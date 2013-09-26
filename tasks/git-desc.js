@@ -11,7 +11,10 @@ module.exports = function (grunt) {
 
 		var options = this.options({
 				template: "{%=branch%}.{%=shortSHA%}.{%=tag%}",
-				prop: "config.gitdesc"
+				prop: "config.gitdesc",
+				branch: "git branch | grep '*' | sed 's/* //'",
+				tag: "git describe --abbrev=0 --tags",
+				shortSHA: "git log --pretty=format:'%h' -n 1"
 			}),
 			data = {},
 			res;
@@ -23,9 +26,10 @@ module.exports = function (grunt) {
 
 		grunt.verbose.writeflags(options, 'Options');
 
-		data.branch = run("git branch | grep '*' | sed 's/* //'")
-		data.shortSHA = run("git log --pretty=format:'%h' -n 1")
-		data.tag = run("git describe --abbrev=0 --tags")
+		for (var name in options) {
+			if (name in {template:1, prop:1}) continue;
+			data[name] = run(options[name]);
+		}
 
 		if (options.template){
 			var compiledTmpl = grunt.template.process(options.template, {

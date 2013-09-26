@@ -14,7 +14,10 @@ module.exports = function (grunt) {
 
 		"git-desc": {
 			me:{
-
+				options:{
+					template: "{%=branch%}.{%=shortSHA2%}.{%=tag%}",
+					shortSHA2: "git log --pretty=format:'%h' -n 1"
+				}
 			}
 		}
 
