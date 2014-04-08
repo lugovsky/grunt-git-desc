@@ -1,6 +1,7 @@
 "use strict";
 
-var shell = require( 'shelljs' );
+var shell = require( 'shelljs' ),
+	fs = require( 'fs' );
 
 
 module.exports = function (grunt) {
@@ -40,8 +41,12 @@ module.exports = function (grunt) {
 							});
 			grunt.config(options.prop+".template", compiledTmpl);
 		}
-
-		grunt.config(options.prop+".data", data);
+		if (options.prop) {
+			grunt.config(options.prop+".data", data);
+		}
+		if (options.writeToFile) {
+			fs.writeFileSync(options.writeToFile, compiledTmpl)
+		}
 		grunt.log.ok(compiledTmpl);
 	});
 
