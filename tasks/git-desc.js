@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 
 		var options = this.options({
 				template: "{%=branch%}.{%=shortSHA%}.{%=tag%}",
-				prop: "config.gitdesc",
+				prop: "",
 				branch: "git branch | grep '*' | sed 's/* //'",
 				tag: "git describe --abbrev=0 --tags",
 				shortSHA: "git log --pretty=format:'%h' -n 1",
@@ -34,16 +34,19 @@ module.exports = function (grunt) {
 			data[name] = run(options[name]);
 		}
 
+		var compiledTmpl = '';
+
 		if (options.template){
 			var compiledTmpl = grunt.template.process(options.template, {
 								"data": data,
 								"delimiters": GIT_DESC
 							});
-			grunt.config(options.prop+".template", compiledTmpl);
 		}
 		if (options.prop) {
 			grunt.config(options.prop+".data", data);
+			grunt.config(options.prop+".template", compiledTmpl);
 		}
+
 		if (options.writeToFile) {
 			fs.writeFileSync(options.writeToFile, compiledTmpl)
 		}
