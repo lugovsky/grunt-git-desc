@@ -1,11 +1,11 @@
 {
   "name": "grunt-git-desc",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "git",
   "main": "Gruntfile.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Trskldn/grunt-git-desc.git"
+    "url": "https://github.com/lugovsky/grunt-git-desc.git"
   },
   "keywords": [
     "gruntplugin",
