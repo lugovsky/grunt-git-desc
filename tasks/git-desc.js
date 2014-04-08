@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 				tag: "git describe --abbrev=0 --tags",
 				shortSHA: "git log --pretty=format:'%h' -n 1",
 				SHA: "git rev-parse HEAD",
-				since: "git describe | awk '{split($0,a,\"-\"); print a[2]}'"
+				since: "git describe | awk '{split($0,a,\"-\"); print a[4]}'"
 			}),
 			data = {},
 			res;
